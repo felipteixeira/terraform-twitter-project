@@ -16,5 +16,5 @@ Verificar criação dos recursos na cloud.
 ### :heavy_check_mark: Diagrama AWS
 
 <p align="center">
-  <img alt="" src="https://github.com/felipteixeira/terraform-twitter-project/tree/master/env/aws.png">
+  <img alt="" src="https://github.com/felipteixeira/terraform-twitter-project/blob/master/env/aws.png">
 </p>
