@@ -1,0 +1,17 @@
+{
+    "rules": [
+        {
+            "rulePriority": 1,
+            "description": "Expire images older images",
+            "selection": {
+                "tagStatus": "untagged",
+                "countType": "sinceImagePushed",
+                "countUnit": "${count_unit}",
+                "countNumber": ${count_number}
+            },
+            "action": {
+                "type": "expire"
+            }
+        }
+    ]
+}
