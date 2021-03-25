@@ -28,7 +28,7 @@ variable "availability_zones" {
 
 variable "subnet_newbits" {
   description = "The subnet_newbits"
-  default     = 6
+  default     = 8
 }
 
 variable "extra_route" {
