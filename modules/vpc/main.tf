@@ -90,6 +90,7 @@ resource "aws_subnet" "public_subnet" {
   cidr_block = var.pub_ipv4_subnets == null ? element([
     cidrsubnet(element(aws_vpc.vpc.*.cidr_block, count.index), var.subnet_newbits, 0),
     cidrsubnet(element(aws_vpc.vpc.*.cidr_block, count.index), var.subnet_newbits, 1),
+    cidrsubnet(element(aws_vpc.vpc.*.cidr_block, count.index), var.subnet_newbits, 2),
   ], count.index) : element(var.pub_ipv4_subnets, count.index)
 
   availability_zone       = element(var.availability_zones, count.index)
@@ -107,6 +108,7 @@ resource "aws_subnet" "private_subnet" {
   cidr_block = var.priv_ipv4_subnets == null ? element([
     cidrsubnet(element(aws_vpc.vpc.*.cidr_block, count.index), var.subnet_newbits, 3),
     cidrsubnet(element(aws_vpc.vpc.*.cidr_block, count.index), var.subnet_newbits, 4),
+    cidrsubnet(element(aws_vpc.vpc.*.cidr_block, count.index), var.subnet_newbits, 5),
   ], count.index) : element(var.priv_ipv4_subnets, count.index)
 
   availability_zone       = element(var.availability_zones, count.index)

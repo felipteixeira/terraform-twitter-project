@@ -12,7 +12,7 @@ module "code_build_twitter_app" {
 module "code_build_twitter_api" {
   source = "./modules/codebuild"
 
-  build_name      = "twitter-app"
+  build_name      = "twitter-api"
   service_role    = aws_iam_role.codebuild.arn
   source_location = var.GIT_REPO_TWITTER_API
   git_branch      = "master"
