@@ -82,13 +82,16 @@ resource "aws_nat_gateway" "nat" {
   }
 }
 
-
 #Public and Private subnets
 resource "aws_subnet" "public_subnet" {
-  count                   = var.enabled ? length(var.availability_zones) : 0
-  vpc_id                  = element(aws_vpc.vpc.*.id, count.index)
-  cidr_block              = data.null_data_source.subnets_cidr[count.index].outputs["public_ipv4_subnets_cidr"]
-  ipv6_cidr_block         = data.null_data_source.subnets_cidr[count.index].outputs["public_ipv6_subnets_cidr"]
+  count  = var.enabled ? length(var.availability_zones) : 0
+  vpc_id = element(aws_vpc.vpc.*.id, count.index)
+
+  cidr_block = var.pub_ipv4_subnets == null ? element([
+    cidrsubnet(element(aws_vpc.vpc.*.cidr_block, count.index), var.subnet_newbits, 0),
+    cidrsubnet(element(aws_vpc.vpc.*.cidr_block, count.index), var.subnet_newbits, 1),
+  ], count.index) : element(var.pub_ipv4_subnets, count.index)
+
   availability_zone       = element(var.availability_zones, count.index)
   map_public_ip_on_launch = true
 
@@ -99,10 +102,13 @@ resource "aws_subnet" "public_subnet" {
 }
 
 resource "aws_subnet" "private_subnet" {
-  count                   = var.enabled ? length(var.availability_zones) : 0
-  vpc_id                  = element(aws_vpc.vpc.*.id, count.index)
-  cidr_block              = data.null_data_source.subnets_cidr[count.index].outputs["private_ipv4_subnets_cidr"]
-  ipv6_cidr_block         = data.null_data_source.subnets_cidr[count.index].outputs["private_ipv6_subnets_cidr"]
+  count  = var.enabled ? length(var.availability_zones) : 0
+  vpc_id = element(aws_vpc.vpc.*.id, count.index)
+  cidr_block = var.priv_ipv4_subnets == null ? element([
+    cidrsubnet(element(aws_vpc.vpc.*.cidr_block, count.index), var.subnet_newbits, 3),
+    cidrsubnet(element(aws_vpc.vpc.*.cidr_block, count.index), var.subnet_newbits, 4),
+  ], count.index) : element(var.priv_ipv4_subnets, count.index)
+
   availability_zone       = element(var.availability_zones, count.index)
   map_public_ip_on_launch = false
 
@@ -114,7 +120,7 @@ resource "aws_subnet" "private_subnet" {
 
 #Public and Private route tables
 resource "aws_route_table" "public" {
-  count  = var.enabled ? 1 : 0 
+  count  = var.enabled ? 1 : 0
   vpc_id = element(aws_vpc.vpc.*.id, count.index)
 
   tags = {
@@ -124,7 +130,7 @@ resource "aws_route_table" "public" {
 }
 
 resource "aws_route_table" "private" {
-  count  = var.enabled ? 1 : 0 
+  count  = var.enabled ? 1 : 0
   vpc_id = element(aws_vpc.vpc.*.id, count.index)
 
   tags = {
@@ -157,13 +163,13 @@ resource "aws_route" "private_interno_extra" {
 
 #Route table associations
 resource "aws_route_table_association" "public" {
-  count          = var.enabled ? length(data.null_data_source.subnets_cidr[*].outputs["public_ipv4_subnets_cidr"]) : 0
+  count          = var.enabled ? length(aws_subnet.public_subnet.*.id) : 0
   subnet_id      = element(aws_subnet.public_subnet.*.id, count.index)
   route_table_id = element(aws_route_table.public.*.id, count.index)
 }
 
 resource "aws_route_table_association" "private" {
-  count          = var.enabled ? length(data.null_data_source.subnets_cidr[*].outputs["private_ipv4_subnets_cidr"]) : 0
+  count          = var.enabled ? length(aws_subnet.private_subnet.*.id) : 0
   subnet_id      = element(aws_subnet.private_subnet.*.id, count.index)
   route_table_id = element(aws_route_table.private.*.id, count.index)
 }

@@ -1,15 +1,15 @@
 /*==========================
-    **  Serviço twitter-app  **
+    **  Serviço twitter-api  **
         ===========================*/
 
-module "service_twitter_app" {
+module "service_twitter_api" {
   source = "./modules/ecs-ec2"
 
   #Service settings
   environment      = local.domain
-  service_name     = "twitter-app"
-  container_name   = "twitter-app"
-  service_port     = "3000"
+  service_name     = "twitter-api"
+  container_name   = "twitter-api"
+  service_port     = "3333"
   container_cpu    = "256"
   container_memory = "512"
   desired_count    = 1
@@ -17,7 +17,7 @@ module "service_twitter_app" {
 
   #Healthy settings
   target_group_protocol = "TCP"
-  tcp_listener_port     = "8080"
+  tcp_listener_port     = "1001"
   tcp_nlb_arn           = module.nlb_prod.nlb_arn
   healthy_threshold     = "2"
   unhealthy_threshold   = "2"

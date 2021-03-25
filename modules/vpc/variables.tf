@@ -3,11 +3,6 @@ variable "enabled" {
   default     = true
 }
 
-# variable "eip_enabled" {
-#   description = "The enabled"
-#   default     = false
-# }
-
 variable "vpc_region" {
   description = "The vpc_region"
   default     = ""
@@ -54,11 +49,11 @@ variable "extra_interface" {
 variable "pub_ipv4_subnets" {
   description = "The pub_ipv4_subnets"
   type        = list(any)
-  default     = []
+  default     = null
 }
 
 variable "priv_ipv4_subnets" {
   description = "The priv_ipv4_subnets"
   type        = list(any)
-  default     = []
+  default     = null
 }

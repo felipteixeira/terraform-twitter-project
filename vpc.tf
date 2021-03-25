@@ -6,8 +6,4 @@ module "vpc" {
   vpc_environment = local.environment
 
   vpc_cidr           = local.workspace["vpc_cidr"]
-  availability_zones = local.workspace["availability_zones"]
-
-  pub_ipv4_subnets  = local.workspace["public_subnets_cidr"]
-  priv_ipv4_subnets = local.workspace["private_subnets_cidr"]
 }
