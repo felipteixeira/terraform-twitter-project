@@ -11,7 +11,7 @@ module "service_twitter_api" {
   container_name   = "twitter-api"
   service_port     = "3333"
   container_cpu    = "256"
-  container_memory = "512"
+  container_memory = "445"
   desired_count    = 1
   cluster_name     = module.main_ecs.cluster_name
 

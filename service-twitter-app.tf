@@ -11,13 +11,13 @@ module "service_twitter_app" {
   container_name   = "twitter-app"
   service_port     = "3000"
   container_cpu    = "256"
-  container_memory = "512"
+  container_memory = "445"
   desired_count    = 1
   cluster_name     = module.main_ecs.cluster_name
 
   #Healthy settings
   target_group_protocol = "TCP"
-  tcp_listener_port     = "8080"
+  tcp_listener_port     = "80"
   tcp_nlb_arn           = module.nlb_prod.nlb_arn
   healthy_threshold     = "2"
   unhealthy_threshold   = "2"
