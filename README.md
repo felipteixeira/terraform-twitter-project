@@ -43,27 +43,3 @@ Sendo eles: [Aplicação](https://github.com/felipteixeira/twitter-app) e
     Todos os protocolos liberados paras as redes: ["10.5.0.0/16"].
 
 
-Billing aproximado para o projeto:
-
-EC2 - t3.micro
-Amazon Elastic Block Storage (EBS) pricing (monthly)
-3.00 USD
-Amazon EC2 Instance Savings Plans instances (monthly)
-4.75 USD
-Total monthly cost: 7.75 USD
-
-CodeBuild - general1.small
-20 builds per month x 5 minutes = 100.00 billed minutes (monthly)
-100.00 minutes x 0.005 USD = 0.50 USD
-AWS CodeBuild cost (monthly): 0.50 USD
-
-Network Load Balancer
-Total hourly charges for all Network Load Balancers (monthly)
-16.43 USD
-Total LCU charges for all Network Load Balancers (monthly)
-0.06 USD
-Total monthly cost: 16.49 USD
-
-CloudWatch
-Total monthly cost: 1.76 USD
-

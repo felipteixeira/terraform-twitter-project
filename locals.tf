@@ -7,7 +7,7 @@ locals {
       region                = "us-east-1"
       vpc_cidr              = "10.5.0.0/16"
       availability_zones    = ["us-east-1a", "us-east-1b"]
-      nomenclature          = ["TechTr00", "PROD"]
+      nomenclature          = ["stone", "PROD"]
     }
   }
 
