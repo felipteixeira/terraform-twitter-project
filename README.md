@@ -5,7 +5,7 @@ Construção de ambiente utilizando pipeline de entrega para coleta de tweets co
 
 ## Arquitetura.
 
-![diagrama](./env/aws.png")
+![diagrama](./env/aws.png)
 
 Para escrever a automação, utilizei dois repositórios privados no github.  
 Sendo eles: [Aplicação](https://github.com/felipteixeira/twitter-app) e
