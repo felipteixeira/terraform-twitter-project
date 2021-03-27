@@ -20,14 +20,14 @@ Utilize [aws-profile](https://docs.aws.amazon.com/cli/latest/userguide/cli-confi
 | [modules](./modules)                     | Pasta contendo modulos para criação de recursos na aws          |
 | [base-backend](./base-backend.tf)        | Configuração state back-end no bucket s3                        |
 | [codebuild](./codebuild.tf)              | Criação de codebuild para deploy automatizado                   |
-| [ecs-cluster-policies](./ecs-cluster-policies.tf) Criação de policies de acesso para cluster ecs           |
+| [ecs-cluster-policies](./ecs-cluster-policies.tf)|Criação de policies de acesso para cluster ecs           |
 | [ecs-cluster](./ecs-cluster.tf)          | Criação do cluster ecs                                          |
 | [locals](./locals.tf)                    | Arquivo locals contendo configuração de ambiente                |
 | [nlb](./nlb.tf)                          | Criação de Network Load Balance                                 |
 | [s3](./s3.tf)                            | Criação de bucket s3 para armazenar logs de build               |
 | [service-policies](./service-policies.tf)| Criação de policies para serviços                               |
-| [service-twitter-api](./service-twitter-api.tf) Service twitter-api                                        |
-| [service-twitter-app](./service-twitter-app.tf) Service twitter-app                                        |
+| [service-twitter-api](./service-twitter-api.tf)| Service twitter-api                                       |
+| [service-twitter-app](./service-twitter-app.tf)| Service twitter-app                                       |
 | [vars](./vars.tf)                        | Variaveis de ambiente                                           |
 | [vpc](./vpc.tf)                          | Vpc                                                             |
 
