@@ -3,7 +3,7 @@
 
 Construção de ambiente utilizando pipeline de entrega para coleta de tweets com as tags informadas pelo user.
 
-## Arquitetura
+## Architecture
 
 ![diagrama](./env/aws.png)
 
@@ -42,31 +42,9 @@ Utilize [aws-profile](https://docs.aws.amazon.com/cli/latest/userguide/cli-confi
 
 ## Deploy
 
-There is a order to apply all resources:
-
-1. backend
-1. shared
-1. applications
-
 ```
-aws-vault exec <your-profile> -d 12h --
-
-cd backend
+terraform workspace new prod
 terraform init
-terraform plan -out plan.apply
-terraform apply plan.apply
-
-cd -
-cd shared
-terraform init
-terraform plan -out plan.apply
-terraform apply plan.apply
-
-cd -
-cd applications/nginx-app
-terraform init
-terraform workspace new stg
-terraform workspace new prd
 terraform plan -out plan.apply
 terraform apply plan.apply
 
