@@ -1,33 +1,11 @@
 
-### :page_with_curl: About
+# Twitter app
+
 Construção de ambiente utilizando pipeline de entrega para coleta de tweets com as tags informadas pelo user.
 
-Estrutura criada com terraform. 
+## Arquitetura.
 
-###### `terraform init`
-Para iniciar backend no bucket s3 e baixar as dependencias.
-
-###### `terraform plan`
-Verificar criação dos resources.
-
-###### `terraform apply --auto-approve`
-Aplicar criação dos recursos na cloud.
-
-Tecnologias utilizadas:
-* NLB
-* ASG
-* CloudWatch
-* S3
-* EC2-ECS
-* Codebuild
-* ECR
-* VPC
-
-### :heavy_check_mark: Topologia para entrega da solução.
-
-<p align="center">
-  <img alt="" src="https://github.com/felipteixeira/terraform-twitter-project/blob/master/env/aws.png">
-</p>
+![diagrama](./env/aws.png")
 
 Para escrever a automação, utilizei dois repositórios privados no github.  
 Sendo eles: [Aplicação](https://github.com/felipteixeira/twitter-app) e
