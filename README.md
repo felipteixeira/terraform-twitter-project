@@ -34,7 +34,7 @@ Utilize [aws-profile](https://docs.aws.amazon.com/cli/latest/userguide/cli-confi
 
 ## Requirements
 
-- [terraform cli 0.13.5](https://www.terraform.io/docs/cli/index.html) ([tfswitch](https://tfswitch.warrensbox.com) it's a good option)
+- [terraform cli 0.13.5](https://www.terraform.io/docs/cli/index.html) ([tfswitch](https://tfswitch.warrensbox.com) é uma boa opção)
 
 ## Workspaces
 
