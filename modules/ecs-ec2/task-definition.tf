@@ -12,7 +12,7 @@ data "null_data_source" "service_port_mappings" {
       count.index,
     )
 
-    hostPort = var.target_group_protocol == "TCP" ? 0 : element(
+    hostPort = element(
       compact(concat(var.container_extra_ports, [var.service_port])),
       count.index,
     )

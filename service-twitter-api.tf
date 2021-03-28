@@ -17,7 +17,7 @@ module "service_twitter_api" {
 
   #Healthy settings
   target_group_protocol = "TCP"
-  tcp_listener_port     = "1001"
+  tcp_listener_port     = "3333"
   tcp_nlb_arn           = module.nlb_prod.nlb_arn
   healthy_threshold     = "2"
   unhealthy_threshold   = "2"

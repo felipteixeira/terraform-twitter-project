@@ -37,8 +37,16 @@ resource "aws_security_group" "ecs_main_sg" {
   }
 
   ingress {
-    from_port   = 1001
-    to_port     = 1001
+    from_port   = 3000
+    to_port     = 3000
+    protocol    = "TCP"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "Public access"
+  }
+
+  ingress {
+    from_port   = 3333
+    to_port     = 3333
     protocol    = "TCP"
     cidr_blocks = ["0.0.0.0/0"]
     description = "Public access"
