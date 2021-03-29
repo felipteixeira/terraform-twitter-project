@@ -13,7 +13,7 @@ module "main_ecs" {
   iam_instance_profile = aws_iam_instance_profile.profile_base.id
 
   #Autoscaling Group
-  desired_capacity = 2
+  desired_capacity = 1
   max_instance     = 2
   subnets_id       = [module.vpc.private_subnet_ids[0], module.vpc.private_subnet_ids[1]]
 }
