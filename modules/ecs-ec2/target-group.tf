@@ -1,22 +1,22 @@
 resource "aws_alb_target_group" "tg_service" {
-  count       = var.enable_alb == true ? 1 : 0
-	name     		= var.target_group_name == "" ? "tg-${var.service_name}" : var.target_group_name
-	port     		= var.target_group_protocol != "TCP" ? local.target_port : var.tcp_listener_port
-	protocol 		= var.target_group_protocol
-	vpc_id      = var.vpc_id
-	target_type = local.target_type
+  count                = var.enable_alb == true ? 1 : 0
+  name                 = var.target_group_name == "" ? "tg-${var.service_name}" : var.target_group_name
+  port                 = var.target_group_protocol != "TCP" ? local.target_port : var.tcp_listener_port
+  protocol             = var.target_group_protocol
+  vpc_id               = var.vpc_id
+  target_type          = local.target_type
   deregistration_delay = var.deregistration_delay
 
-	health_check {
-		interval 						= var.healthcheck_interval
-		healthy_threshold   = var.target_group_protocol == "TCP" ? var.unhealthy_threshold : var.healthy_threshold
-		unhealthy_threshold = var.unhealthy_threshold
-		timeout  						= var.target_group_protocol == "TCP" ? null : var.healthcheck_timeout
-		matcher 						= var.target_group_protocol == "TCP" ? null : var.healthcheck_matcher
-		path    						= var.target_group_protocol == "TCP" ? null : var.healthcheck_path
-		port                = var.target_group_protocol == "TCP" ? null : var.healthcheck_port
-		protocol            = var.target_group_protocol == "TCP" ? var.target_group_protocol : var.healthcheck_protocol
-	}
+  health_check {
+    interval            = var.healthcheck_interval
+    healthy_threshold   = var.target_group_protocol == "TCP" ? var.unhealthy_threshold : var.healthy_threshold
+    unhealthy_threshold = var.unhealthy_threshold
+    timeout             = var.target_group_protocol == "TCP" ? null : var.healthcheck_timeout
+    matcher             = var.target_group_protocol == "TCP" ? null : var.healthcheck_matcher
+    path                = var.target_group_protocol == "TCP" ? null : var.healthcheck_path
+    port                = var.target_group_protocol == "TCP" ? null : var.healthcheck_port
+    protocol            = var.target_group_protocol == "TCP" ? var.target_group_protocol : var.healthcheck_protocol
+  }
 
   dynamic "stickiness" {
     for_each = var.target_group_protocol == "TCP" ? [] : [1]
@@ -104,5 +104,7 @@ resource "aws_lb_listener" "alb_listener_tcp" {
     type             = "forward"
     target_group_arn = aws_alb_target_group.tg_service[count.index].arn
   }
+
+  depends_on = [aws_alb_target_group.tg_service]
 }
 
